@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Nuke Your Tracks: Settings</title>
+<script type="text/javascript" src="options.js"></script>
+<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<div id="wrapper">
+	<span id="title">	
+		<img src="/icon48.png" alt="Nuke Your Tracks Logo" />
+		<h1>Nuke Your Tracks : Settings</h1>
+	</span>
+
+
+	<div id="options_wrapper">
+		<div class="panel"><h4>Common data</h4>
+		<fieldset>
+		 <label><input type="checkbox" value="history"/> History </label>
+		 <label><input type="checkbox" value="cache" />  Browser cache </label> 
+		 <label><input type="checkbox" value="cookies" /> Cookies </label>
+		 <label><input type="checkbox" value="formData" />  Form data </label>
+		 <label><input type="checkbox" value="downloads" />  Download history</label>
+		 <label><input type="checkbox" value="passwords" />  Passwords </label>
+		 <label><input type="checkbox" value="appcache" /> App cache </label>
+		</fieldset>
+	</div>
+		
+		<div class="panel"><h4>Other data ( use with caution! ) </h4>
+		<fieldset>
+			 <label><input type="checkbox" value="indexedDB" /> IndexedDB </label>
+			 <label><input type="checkbox" value="localStorage" /> localStorage </label>
+			 <label><input type="checkbox" value="pluginData" /> Plugin data </label>
+			 <label><input type="checkbox" value="serverBoundCertificates"/> Server-bound certificate</label>
+			 <label><input type="checkbox" value="webSQL" />  WebSQL </label>
+		</fieldset></div>
+		
+		<button class="" id="saveButton">Save </button>
+	</div>
+</div>
+</body>
+</html>
