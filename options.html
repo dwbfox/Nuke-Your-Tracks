@@ -1,41 +1,61 @@
-<html>
+<!doctype html>
+<html ng-csp ng-app="nukeyourtracks">
 <head>
-<title>Nuke Your Tracks: Settings</title>
-<script type="text/javascript" src="options.js"></script>
-<link rel="stylesheet" href="style.css" type="text/css">
+	<title>Nuke Your Tracks:: {{ title }}</title>
+	<script src="js/angular.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div id="wrapper">
-	<span id="title">	
-		<img src="/icon48.png" alt="Nuke Your Tracks Logo" />
-		<h1>Nuke Your Tracks : Settings</h1>
-	</span>
+
+	<div ng-controller="MainCtrl" class="container">
+
+		<div>
+			<img class="pull-left" alt="Nuke Your Icons Logo" src="img/icon48.png">
+			<h4 style="line-height: 47px; margin-left: 60px;" class="">Nuke Your Tracks</h4>
+		</div>
+
+		<div class="span2 sidebar">
+			
+			<ul class="nav nav-list">
+				
 
 
-	<div id="options_wrapper">
-		<div class="panel"><h4>Common data</h4>
-		<fieldset>
-		 <label><input type="checkbox" value="history"/> History </label>
-		 <label><input type="checkbox" value="cache" />  Browser cache </label> 
-		 <label><input type="checkbox" value="cookies" /> Cookies </label>
-		 <label><input type="checkbox" value="formData" />  Form data </label>
-		 <label><input type="checkbox" value="downloads" />  Download history</label>
-		 <label><input type="checkbox" value="passwords" />  Passwords </label>
-		 <label><input type="checkbox" value="appcache" /> App cache </label>
-		</fieldset>
-	</div>
-		
-		<div class="panel"><h4>Other data ( use with caution! ) </h4>
-		<fieldset>
-			 <label><input type="checkbox" value="indexedDB" /> IndexedDB </label>
-			 <label><input type="checkbox" value="localStorage" /> localStorage </label>
-			 <label><input type="checkbox" value="pluginData" /> Plugin data </label>
-			 <label><input type="checkbox" value="serverBoundCertificates"/> Server-bound certificate</label>
-			 <label><input type="checkbox" value="webSQL" />  WebSQL </label>
-		</fieldset></div>
-		
-		<button class="" id="saveButton">Save </button>
-	</div>
-</div>
-</body>
-</html>
+				<li ng-class="{active:isActive('/settings')}">
+					<a href="#/settings">
+					<i class="icon-white icon-home"></i> General Settings</a>
+				</li>
+				<li class="divider"></li>
+
+				<li  ng-class="{active:isActive('/about')}"><a href="#/about"><i class="icon-white icon-question-sign"></i> About</a></li>
+
+				<li ng-class="{active:isActive('/changelog')}"><a href="#/changelog"><i class="icon-white icon-bullhorn"></i> Changelog</a></li>
+
+				<li ng-class="{active:isActive('/donate')}"><a href="#/donate"><i class="icon-white icon-heart"></i> Donate</a></li>
+
+				<li ng-class="{active:isActive('/source')}"><a href="https://github.com/dwbfox/Nuke-Your-Tracks"><i class="icon-white icon-file"></i>Source code (Github)</a></li>
+			</ul>
+		</div>
+
+		<div ng-view="" class="span9 content">
+			<!-- LOAD ANGULAR CONTENT -->
+			<!-- END LOAD ANGULAR CONTENT -->
+		</div> <!--/ content -->
+
+		<div class="span12 footer">
+			<ul class="metadata">
+				<li>Copyright &copy; 2013</li>
+				<li>Version 1.4.0</li>
+				<li><img src="../../img/gpl_logo.png" alt="Licensed under GPL v3"></li>
+			</ul>
+
+		</div>
+
+	</div> <!-- /main container-->
+
+
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/app.js"></script>
+</body>		

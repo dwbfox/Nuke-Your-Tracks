@@ -1,20 +1,22 @@
 {
-	"name":"Nuke Your Tracks",
-	"version":"1.3.2.3",
-	"description":"Cover your tracks and browse in peace.",
-	"minimum_chrome_version":"19",
-	"options_page":"options.html",
-	"background": {
-		"scripts":["app.js"]
-	},
-	"icons": {
-		"16":"/icon16.png",
-		"48":"/icon48.png",
-		"128":"/icon128.png"
-	},
-	"permissions": ["notifications","browsingData"],
-	"browser_action": {
-		"default_icon":"icon48.png",
-		"default_title":"Nuke  Your Tracks"
-	}
+   "background": {
+      "scripts": [ "js/db.js" ]
+   },
+   "browser_action": {
+      "default_icon": "img/icon48.png",
+      "default_title": "Nuke Your Tracks"
+   },
+   "description": "Delete your browsing data based on your preferences with one click of a button. Cover your tracks and browse in peace!",
+   "icons": {
+      "128": "img/icon128.png",
+      "16": "img/icon16.png",
+      "48": "img/icon48.png"
+   }, 
+
+   "manifest_version": 2,
+   "minimum_chrome_version": "19",
+   "name": "Nuke Your Tracks",
+   "options_page": "options.html",
+   "permissions": [ "notifications", "browsingData", "storage" ],
+   "version": "1.4"
 }

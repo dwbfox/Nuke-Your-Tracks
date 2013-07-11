@@ -1,0 +1,27 @@
+<div ng-controller="BrowserDataCtrl">
+	<h3>Cleaning settings</h3>
+		<fieldset class="">
+			<div>
+			 	<ul class="settings">
+					<li ng-repeat="setting in settings">
+						<button ng-click="console.log('test')" data-toggle="button" data-slug="{{ setting.slug }}" class="block option-button span3 btn btn-setting btn-large">
+							<i class="icon-arrow"></i>
+							<span>{{setting.name}}</span>
+						</button>
+						
+					</li>
+				</ul>
+			</div>
+
+		</fieldset>
+	</div>
+		
+	<h3>Other Settings</h3>
+	<div>
+		<p>Silent cleaning (hides notifications when cleaning)</p>
+	<div class="btn-group">
+	  <button class="disabled btn btn-success">On</button>
+	  <button class="disabled btn ">Off</button>
+	</div>
+
+</div>		
