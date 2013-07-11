@@ -1,27 +1,38 @@
-<div ng-controller="BrowserDataCtrl">
+<div class="span4">
 	<h3>Cleaning settings</h3>
 		<fieldset class="">
 			<div>
 			 	<ul class="settings">
 					<li ng-repeat="setting in settings">
-						<button ng-click="console.log('test')" data-toggle="button" data-slug="{{ setting.slug }}" class="block option-button span3 btn btn-setting btn-large">
-							<i class="icon-arrow"></i>
+						<label>
+						<input type="checkbox" ng-click="" 
+								data-toggle="button"
+								ng-model="setting.data" 
+								data-slug="{{ setting.slug }}" 
+								class="">
 							<span>{{setting.name}}</span>
-						</button>
-						
+						</label>						
 					</li>
 				</ul>
 			</div>
 
 		</fieldset>
-	</div>
-		
-	<h3>Other Settings</h3>
-	<div>
-		<p>Silent cleaning (hides notifications when cleaning)</p>
-	<div class="btn-group">
-	  <button class="disabled btn btn-success">On</button>
-	  <button class="disabled btn ">Off</button>
-	</div>
+
 
 </div>		
+
+<div class="span4">
+
+	<h3>Other Settings</h3>
+
+	<div class="control-group">
+		<p>Silent cleaning (hides notifications when cleaning)</p>
+		<label class="control-label" ><input type="radio" id="inputSilentOn" value="true" ng-model="setting.silent"> On</label>
+		<label class="control-label" ><input type="radio" id="inputSilentOff" value="false" ng-model="setting.silent"> Off</label>
+	</div>
+
+	<div class="btn-group">
+		<p>Interval cleaning</p>
+
+	</div>
+</div>

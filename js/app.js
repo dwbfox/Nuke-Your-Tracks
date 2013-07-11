@@ -1,4 +1,29 @@
 // This data would be retrieved from IndexedDB
+var DEBUG = true;
+
+function trace(m,growlargs,debug) {
+
+	console.log(m);
+
+	if (!DEBUG) {
+		return;
+	}
+
+	if (growlargs) {
+		$.growl({
+			text: '[DEBUG]' + m,
+			type: growlargs['type'],
+			delay:2500
+		});
+	}
+
+}
+
+function notify(m) {
+
+}
+
+
 var savedSettings = [
 		{
 			name: "App cache",
@@ -55,16 +80,26 @@ var savedSettings = [
 // Controllers
 function BrowserDataCtrl($scope) {
 	$scope.settings = savedSettings;
+	trace('BrowserDataCtrl activated..', {type: 'warn'});
+
+	// User sets a setting
+	$scope.update = function(setting) {
+		trace('BrowserDataCtrl' + angular);
+
+	}
 
 }
 
-function AboutCtrl($scope) {
+function AboutCtrl($scope, $window) {
+	trace('AboutCtrl activated..', {type: 'warn'});
+	$scope.title = 'About';
+	trace($window);
 
 }
 
 function MainCtrl($scope, $location) {
 
-	console.log('Main app controller loaded...');
+	trace('Main app controller loaded...',{type:'info'});
 	$scope.isActive = function(page) {
 		var isPage = (page === $location.$$path)
 		
@@ -97,5 +132,3 @@ app.config(function($routeProvider) {
 	)
 	.otherwise({redirectTo: '/about'})
 });
-
-console.log('App loaded.');
