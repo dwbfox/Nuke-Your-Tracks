@@ -1,4 +1,4 @@
-<div class="span4">
+<div class="span3">
 	<h3>Cleaning settings</h3>
 		<fieldset class="">
 			<div>
@@ -20,19 +20,27 @@
 
 
 </div>		
+<div class="span3">
 
-<div class="span4">
+<div class="span3">
 
 	<h3>Other Settings</h3>
 
 	<div class="control-group">
-		<p>Silent cleaning (hides notifications when cleaning)</p>
+		<p>Silent cleaning <a href="#" class="tooltip" data-original-title="first tooltip">?</a></p>
 		<label class="control-label" ><input type="radio" id="inputSilentOn" value="true" ng-model="setting.silent"> On</label>
 		<label class="control-label" ><input type="radio" id="inputSilentOff" value="false" ng-model="setting.silent"> Off</label>
+	</div>	
+
+	<div class="control-group">
+		<p>Debug Mode</p>
+		<label class="control-label" ><input type="radio" id="" value="true" ng-model="setting.debug"> On</label>
+		<label class="control-label" ><input type="radio" id="" value="false" ng-model="setting.debug"> Off</label>
 	</div>
 
-	<div class="btn-group">
-		<p>Interval cleaning</p>
 
-	</div>
+</div>
+
+<div class="span12 offset3">
+<button class="btn block btn-primary" id="save">Save changes</button>
 </div>

@@ -1,27 +1,29 @@
-// This data would be retrieved from IndexedDB
 var DEBUG = true;
+var nuke = angular.module('nukeyourtracks', []);
+console.log('App loaded');
+// Routers
+nuke.config(function($routeProvider) {
+	$routeProvider.when('/settings',
+		{
+			templateUrl: '../partials/settings.html',
+			controller: 'BrowserDataCtrl'
+		}
+	)
+	.when('/changelog',
+		{
+			templateUrl: '../partials/changelog.html',
+			title: 'Changelog'
+		}
+	)
+	.when('/about',
+		{
+			templateUrl: '../partials/about.html',
+			controller: 'AboutCtrl'
+		}
 
-function trace(m,growlargs,debug) {
-
-	console.log(m);
-
-	if (!DEBUG) {
-		return;
-	}
-
-	if (growlargs) {
-		$.growl({
-			text: '[DEBUG]' + m,
-			type: growlargs['type'],
-			delay:2500
-		});
-	}
-
-}
-
-function notify(m) {
-
-}
+	)
+	.otherwise({redirectTo: '/about'})
+});
 
 
 var savedSettings = [
@@ -77,58 +79,3 @@ var savedSettings = [
 		}
 		
 	];
-// Controllers
-function BrowserDataCtrl($scope) {
-	$scope.settings = savedSettings;
-	trace('BrowserDataCtrl activated..', {type: 'warn'});
-
-	// User sets a setting
-	$scope.update = function(setting) {
-		trace('BrowserDataCtrl' + angular);
-
-	}
-
-}
-
-function AboutCtrl($scope, $window) {
-	trace('AboutCtrl activated..', {type: 'warn'});
-	$scope.title = 'About';
-	trace($window);
-
-}
-
-function MainCtrl($scope, $location) {
-
-	trace('Main app controller loaded...',{type:'info'});
-	$scope.isActive = function(page) {
-		var isPage = (page === $location.$$path)
-		
-		return isPage;
-	}
-}
-
-app = angular.module('nukeyourtracks', []);
-
-// Routers
-app.config(function($routeProvider) {
-	$routeProvider.when('/settings',
-		{
-			templateUrl: '../partials/settings.html',
-			controller: 'BrowserDataCtrl'
-		}
-	)
-	.when('/changelog',
-		{
-			templateUrl: '../partials/changelog.html',
-			title: 'Changelog'
-		}
-	)
-	.when('/about',
-		{
-			templateUrl: '../partials/about.html',
-			controller: 'AboutCtrl'
-		}
-
-	)
-	.otherwise({redirectTo: '/about'})
-});
