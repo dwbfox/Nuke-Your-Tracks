@@ -1,14 +1,17 @@
 console.log('controller');
-nuke.controller('MainCtrl',['$scope', '$growlService', '$location', function($scope,$location) {
+nuke.controller('MainCtrl',['$scope', '$growlService', '$location', function($scope,$growlService,$location) {
 	console.log('$growlService:', $growlService);
+
 	$scope.isActive = function(page) {
 		var isPage = (page === $location.$$path)
 		return isPage;
 	}
+
+
 }]);
 
 
-nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', '$storageService', function($scope) {
+nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope,$growlService) {
 
 	$growlService.growl('BrowserDataCtrl loaded');
 	$('.tooltip').tooltip();
@@ -21,7 +24,8 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', '$storageService'
 	}
 }]);
 
-nuke.controller('AboutCtrl',['$scope','$window', function($scope,$window) {
+nuke.controller('AboutCtrl',['$scope','$growlService', '$window', function($scope, $growlService, $window) {
+	$growlService.growl('AboutCtrl loaded...')
 	$scope.title = 'About';
 }]);
 

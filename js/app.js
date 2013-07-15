@@ -1,6 +1,8 @@
 var DEBUG = true;
 var nuke = angular.module('nukeyourtracks', []);
+
 console.log('App loaded');
+
 // Routers
 nuke.config(function($routeProvider) {
 	$routeProvider.when('/settings',
@@ -26,6 +28,7 @@ nuke.config(function($routeProvider) {
 });
 
 
+// Temp data
 var savedSettings = [
 		{
 			name: "App cache",
