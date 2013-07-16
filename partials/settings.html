@@ -3,14 +3,18 @@
 		<fieldset class="">
 			<div>
 			 	<ul class="settings">
-					<li ng-repeat="setting in settings">
+					<li ng-repeat="setting in settings.cleanSettings | orderBy:'setting.name'">
 						<label>
-						<input type="checkbox" ng-click="" 
-								data-toggle="button"
-								ng-model="setting.data" 
-								data-slug="{{ setting.slug }}" 
-								class="">
-							<span>{{setting.name}}</span>
+						<input 
+							type="checkbox" 
+							data-toggle="button"
+							ng-checked="setting.checked"
+							ng-model="setting.checked" 
+							ng-click="updateSetting(setting)"
+							value="{{ setting.slug }}" 
+							class=""
+						>
+							<span>{{ setting.name }}</span>
 						</label>						
 					</li>
 				</ul>
@@ -28,8 +32,8 @@
 
 	<div class="control-group">
 		<p>Silent cleaning <a href="#" class="tooltip" data-original-title="first tooltip">?</a></p>
-		<label class="control-label" ><input type="radio" id="inputSilentOn" value="true" ng-model="setting.silent"> On</label>
-		<label class="control-label" ><input type="radio" id="inputSilentOff" value="false" ng-model="setting.silent"> Off</label>
+		<label class="control-label" ><input ng-changed="updateSetting(setting)" type="radio" id="inputSilentOn" value="true" ng-model="setting.appSettings.silent"> On</label>
+		<label class="control-label" ><input type="radio" id="inputSilentOff" value="false" ng-model="setting.appSettings.silent"> Off</label>
 	</div>	
 
 	<div class="control-group">
@@ -39,8 +43,4 @@
 	</div>
 
 
-</div>
-
-<div class="span12 offset3">
-<button class="btn block btn-primary" id="save">Save changes</button>
 </div>
