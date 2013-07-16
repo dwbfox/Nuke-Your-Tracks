@@ -5,47 +5,56 @@ nuke.controller('MainCtrl',['$scope', '$growlService', '$location', function($sc
 		var isPage = (page === $location.$$path)
 		return isPage;
 	}
-
-
 }]);
 
 // Main settings page
 nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, $growlService) {
 
 	$scope.settings = {};
-	console.log('BrowserDataCtrl loaded');
+	console.warn('BrowserDataCtrl invoked');
 
-	// Load the previous settings
-	chrome.storage.sync.get('appSettings', function(data) {
-		console.log('Loaded storage data:', data);
-		$scope.settings = data;	
-		console.log('appSettings: ',$scope.settings);
-	});
-	
-	chrome.storage.sync.get('cleanSettings', function(data) {
-		$scope.settings.cleanSettings = data.cleanSettings;	
-		console.log('cleanSettings', data.cleanSettings);
-	});
+	$scope.loadSettings = function() {
+		console.warn($scope);
+		// Load the previous settings
+		chrome.storage.sync.get('appSettings', function(data) {
+			$scope.$apply(function() {
+				console.log('Loaded storage data (appSettings):', data);
+				$scope.settings.appSettings = data.appSettings;				
+			});
 
-	console.log('Loaded settings:', $scope.settings);
+		});		
+
+		chrome.storage.sync.get('cleanSettings', function(data) {
+			$scope.$apply(function() {
+				console.log('Loaded storage data (cleanSettings):', data);
+				$scope.settings.cleanSettings = data.cleanSettings;	
+			});
+		});
+
+		console.log($scope.settings)
+	}
+
+	console.warn('Have not loaded settings:', $scope.settings);
+	$scope.loadSettings();
+	console.warn('Now loaded settings:', $scope.settings);
 
 
 
 	// User sets a setting
 	$scope.updateSetting = function(setting) {
-		$growlService.config.delay = 450;
-		$growlService.growl('Clean ' + setting.name + ': ' + setting.checked);
+		console.log('updateSetting(): Saving setting...', setting);
+		$growlService.config.delay = 500;
+		$growlService.growl('Clean ' + setting.name + ': <strong>' + setting.checked + '</strong>');
 
 		// Saved the modified settings
-		chrome.stroage.sync.set($scope.settings);
-		console.log('updateSetting(): Saving setting...', setting);
+		chrome.storage.sync.set($scope.settings);
 	}
 
 }]);
 
 // About page
 nuke.controller('AboutCtrl',['$scope','$growlService', '$window', function($scope, $growlService, $window) {
-	$growlService.growl('AboutCtrl loaded...')
+	console.log('AboutCtrl loaded...')
 	$scope.title = 'About';
 }]);
 

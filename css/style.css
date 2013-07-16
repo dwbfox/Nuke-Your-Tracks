@@ -9,6 +9,10 @@ body {
 	font-weight: lighter;
 }
 
+h3 {
+	font-size:19px;
+}
+
 .header {
     min-width: 295px;
     clear: both;

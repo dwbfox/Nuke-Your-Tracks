@@ -1,9 +1,9 @@
 <div class="span3">
-	<h3>Cleaning settings</h3>
+	<h3><i class="icon-eraser "></i> Cleaning settings</h3>
 		<fieldset class="">
 			<div>
 			 	<ul class="settings">
-					<li ng-repeat="setting in settings.cleanSettings | orderBy:'setting.name'">
+					<li ng-repeat="setting in settings.cleanSettings">
 						<label>
 						<input 
 							type="checkbox" 
@@ -24,23 +24,16 @@
 
 
 </div>		
-<div class="span3">
 
 <div class="span3">
 
-	<h3>Other Settings</h3>
+	<h3><i class="icon-gear"></i> Other Settings</h3>
 
 	<div class="control-group">
 		<p>Silent cleaning <a href="#" class="tooltip" data-original-title="first tooltip">?</a></p>
-		<label class="control-label" ><input ng-changed="updateSetting(setting)" type="radio" id="inputSilentOn" value="true" ng-model="setting.appSettings.silent"> On</label>
-		<label class="control-label" ><input type="radio" id="inputSilentOff" value="false" ng-model="setting.appSettings.silent"> Off</label>
+		<label class="control-label" ><input type="radio" value="true" ng-model="setting.appSettings.silent"> On</label>
+		<label class="control-label" ><input type="radio" value="false" ng-model="setting.appSettings.silent"> Off</label>
 	</div>	
-
-	<div class="control-group">
-		<p>Debug Mode</p>
-		<label class="control-label" ><input type="radio" id="" value="true" ng-model="setting.debug"> On</label>
-		<label class="control-label" ><input type="radio" id="" value="false" ng-model="setting.debug"> Off</label>
-	</div>
 
 
 </div>
