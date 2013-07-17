@@ -19,5 +19,4 @@ nuke.factory('$growlService', function() {
 });
 
 
-
 console.log('services loaded', nuke);

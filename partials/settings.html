@@ -1,5 +1,5 @@
 <div class="span3">
-	<h3><i class="icon-eraser "></i> Cleaning settings</h3>
+	<h3><i class="icon-eraser "></i> Cleaning settings {{ settings }}</h3>
 		<fieldset class="">
 			<div>
 			 	<ul class="settings">
@@ -25,14 +25,14 @@
 
 </div>		
 
-<div class="span3">
+<div class="span4">
 
 	<h3><i class="icon-gear"></i> Other Settings</h3>
 
 	<div class="control-group">
-		<p>Silent cleaning <a href="#" class="tooltip" data-original-title="first tooltip">?</a></p>
-		<label class="control-label" ><input type="radio" value="true" ng-model="setting.appSettings.silent"> On</label>
-		<label class="control-label" ><input type="radio" value="false" ng-model="setting.appSettings.silent"> Off</label>
+		<label class="control-label" ><input ng-changed="updateSetting(setting)" type="checkbox" value="true" ng-model="setting.appSettings.silent"> Show me notifications when cleaning begins</label>
+
+		<label class="control-label" ><input ng-changed="updateSetting(setting)" type="checkbox" value="true" ng-model="setting.appSettings.debug"> Enable debug mode</label>
 	</div>	
 
 

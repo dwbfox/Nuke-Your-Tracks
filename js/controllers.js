@@ -1,6 +1,10 @@
 // Main app controller
 nuke.controller('MainCtrl',['$scope', '$growlService', '$location', function($scope,$growlService,$location) {
 
+	chrome.runtime.onInstalled.addListener(function(e) {
+		console.log('On installed!')	
+	});
+
 	$scope.isActive = function(page) {
 		var isPage = (page === $location.$$path)
 		return isPage;
@@ -9,36 +13,6 @@ nuke.controller('MainCtrl',['$scope', '$growlService', '$location', function($sc
 
 // Main settings page
 nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, $growlService) {
-
-	$scope.settings = {};
-	console.warn('BrowserDataCtrl invoked');
-
-	$scope.loadSettings = function() {
-		console.warn($scope);
-		// Load the previous settings
-		chrome.storage.sync.get('appSettings', function(data) {
-			$scope.$apply(function() {
-				console.log('Loaded storage data (appSettings):', data);
-				$scope.settings.appSettings = data.appSettings;				
-			});
-
-		});		
-
-		chrome.storage.sync.get('cleanSettings', function(data) {
-			$scope.$apply(function() {
-				console.log('Loaded storage data (cleanSettings):', data);
-				$scope.settings.cleanSettings = data.cleanSettings;	
-			});
-		});
-
-		console.log($scope.settings)
-	}
-
-	console.warn('Have not loaded settings:', $scope.settings);
-	$scope.loadSettings();
-	console.warn('Now loaded settings:', $scope.settings);
-
-
 
 	// User sets a setting
 	$scope.updateSetting = function(setting) {
@@ -49,6 +23,56 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
 		// Saved the modified settings
 		chrome.storage.sync.set($scope.settings);
 	}
+
+
+	$scope.settings = {};
+	console.warn('BrowserDataCtrl invoked');
+
+	// Initalize the storage with empty data if not set already
+	$scope.initSettings = function() {
+		console.warn('Initalizing a new load of settings');
+		console.log('Default settings: ', nukeSettings);
+		$scope.updateSetting(nukeSettings);
+	}
+
+
+	$scope.loadSettings = function() {
+		console.warn('loadSettings(): $scope: ',$scope);
+
+		// Load the previous application settings
+		chrome.storage.sync.get('appSettings', function(data) {
+			
+			// No data, meaning we haven't initalized it
+			if (chrome.runtime.lastError || typeof $scope.settings.appSettings === 'undefined') {
+				console.error('loadSettings(): Warning no data found:', $scope.settings, chrome.runtime.lastError);
+				$scope.initSettings();			
+			}
+
+			$scope.$apply(function() {
+
+
+				// Now load them
+				console.log('Loaded storage data (appSettings):', data);
+				$scope.settings.appSettings = data.appSettings;	
+
+			});
+
+		});		
+
+		// Load the cleaning settings
+		chrome.storage.sync.get('cleanSettings', function(data) {
+			$scope.$apply(function() {
+				console.log('Loaded storage data (cleanSettings):', data);
+				$scope.settings.cleanSettings = data.cleanSettings;	
+						console.log($scope.settings)
+			});
+		});
+
+
+	}
+
+	$scope.loadSettings();
+
 
 }]);
 

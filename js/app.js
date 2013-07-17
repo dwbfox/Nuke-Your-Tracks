@@ -29,8 +29,7 @@ nuke.config(function($routeProvider) {
 	})
 	.otherwise(
 		{
-			redirectTo: '/about',
-			controller: 'BrowserDataCtrl'
+			redirectTo: '/settings'
 		}
 	)
 });
