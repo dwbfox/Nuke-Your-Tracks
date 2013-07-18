@@ -16,6 +16,7 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
 
 	// User sets a setting
 	$scope.updateSetting = function(setting) {
+		console.log('AppSettings',$scope.settings.appSettings);
 		console.log('updateSetting(): Saving setting...', setting);
 		$growlService.config.delay = 500;
 		$growlService.growl('Clean ' + setting.name + ': <strong>' + setting.checked + '</strong>');
@@ -28,14 +29,6 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
 	$scope.settings = {};
 	console.warn('BrowserDataCtrl invoked');
 
-	// Initalize the storage with empty data if not set already
-	$scope.initSettings = function() {
-		console.warn('Initalizing a new load of settings');
-		console.log('Default settings: ', nukeSettings);
-		$scope.updateSetting(nukeSettings);
-	}
-
-
 	$scope.loadSettings = function() {
 		console.warn('loadSettings(): $scope: ',$scope);
 
@@ -45,7 +38,6 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
 			// No data, meaning we haven't initalized it
 			if (chrome.runtime.lastError || typeof $scope.settings.appSettings === 'undefined') {
 				console.error('loadSettings(): Warning no data found:', $scope.settings, chrome.runtime.lastError);
-				$scope.initSettings();			
 			}
 
 			$scope.$apply(function() {

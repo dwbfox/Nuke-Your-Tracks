@@ -1,5 +1,5 @@
 <div class="span3">
-	<h3><i class="icon-eraser "></i> Cleaning settings {{ settings }}</h3>
+	<h3><i class="icon-eraser "></i> Cleaning settings</h3>
 		<fieldset class="">
 			<div>
 			 	<ul class="settings">
@@ -30,9 +30,9 @@
 	<h3><i class="icon-gear"></i> Other Settings</h3>
 
 	<div class="control-group">
-		<label class="control-label" ><input ng-changed="updateSetting(setting)" type="checkbox" value="true" ng-model="setting.appSettings.silent"> Show me notifications when cleaning begins</label>
+		<label class="control-label" ><input ng-click="updateSetting(settings.appSettings.silent)" type="checkbox" value="true" ng-model="settings.appSettings.silent"> Show me notifications when cleaning begins</label>
 
-		<label class="control-label" ><input ng-changed="updateSetting(setting)" type="checkbox" value="true" ng-model="setting.appSettings.debug"> Enable debug mode</label>
+		<label class="control-label" ><input ng-click="updateSetting(settings.appSettings.debug)" type="checkbox" value="true" ng-model="settings.appSettings.debug"> Enable debug mode</label>
 	</div>	
 
 
