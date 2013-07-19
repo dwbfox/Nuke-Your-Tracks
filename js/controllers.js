@@ -5,6 +5,8 @@ nuke.controller('MainCtrl',['$scope', '$growlService', '$location', function($sc
 		console.log('On installed!')	
 	});
 
+	$scope.version = chrome.runtime.getManifest().version;
+
 	$scope.isActive = function(page) {
 		var isPage = (page === $location.$$path)
 		return isPage;
@@ -16,10 +18,11 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
 
 	// User sets a setting
 	$scope.updateSetting = function(setting) {
+		var settingVal = $scope.settings.appSettings || $scope.settings.cleanSettings.checked;
 		console.log('AppSettings',$scope.settings.appSettings);
-		console.log('updateSetting(): Saving setting...', setting);
+		console.log('updateSetting(): Saving setting...', settingVal);
 		$growlService.config.delay = 500;
-		$growlService.growl('Clean ' + setting.name + ': <strong>' + setting.checked + '</strong>');
+		$growlService.growl('Setting saved!');
 
 		// Saved the modified settings
 		chrome.storage.sync.set($scope.settings);
@@ -67,6 +70,7 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
 
 
 }]);
+
 
 // About page
 nuke.controller('AboutCtrl',['$scope','$growlService', '$window', function($scope, $growlService, $window) {

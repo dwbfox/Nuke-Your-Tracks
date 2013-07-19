@@ -9,9 +9,9 @@ nuke.factory('$growlService', function() {
 
 	growl.growl = function(message) {
 		$.growl({
-			type: this.config['type'],
+			type: this.config.mtype,
 			text: message,
-			delay: this.config['delay']
+			delay: this.config.delay
 		});
 	}
 

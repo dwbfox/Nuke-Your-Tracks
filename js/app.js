@@ -1,4 +1,3 @@
-var DEBUG = true;
 var nuke = angular.module('nukeyourtracks', []);
 
 

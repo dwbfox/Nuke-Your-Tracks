@@ -1,38 +1,43 @@
 <!doctype html>
 <html ng-csp ng-app="nukeyourtracks">
 <head>
-	<title>Nuke Your Tracks:: {{ title }}</title>
+	<title>Nuke Your Tracks</title>
 	<script src="js/angular.min.js"></script>
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="css/style.css">
+	<script src="js/less.js"></script>
 </head>
-<body>
+<body ng-controller="MainCtrl">
 
-	<div ng-controller="MainCtrl" class="container">
+		<div class="navbar navbar-inverse navbar-static-top navigation">
+			<a href="#/about" class="brand">
+				<img src="../img/icon16.png">
+ 				Nuke Your Tracks
+ 			</a>
+			<div class="navbar-inner">
+				<ul class="nav">
+				
+					<li ng-class="{active:isActive('/settings')}">
+						<a href="#/settings">
+						<i class="icon-gears icon-large"></i> General Settings</a>
+					</li>
+					<li class="divider"></li>
 
-		<div class="span2 sidebar">
-			
-			<ul class="nav nav-list">
-			
-				<li ng-class="{active:isActive('/settings')}">
-					<a href="#/settings">
-					<i class="icon-gears icon-large"></i> General Settings</a>
-				</li>
-				<li class="divider"></li>
+					<li  ng-class="{active:isActive('/about')}"><a href="#/about"><i class="icon-white icon-question-sign"></i> About</a></li>
 
-				<li  ng-class="{active:isActive('/about')}"><a href="#/about"><i class="icon-white icon-question-sign"></i> About</a></li>
+					<li ng-class="{active:isActive('/changelog')}"><a href="#/changelog"><i class="icon-white icon-bullhorn"></i> Changelog</a></li>
 
-				<li ng-class="{active:isActive('/changelog')}"><a href="#/changelog"><i class="icon-white icon-bullhorn"></i> Changelog</a></li>
+					<li ng-class="{active:isActive('/donate')}"><a href="#/donate"><i class="icon-white icon-heart"></i> Donate</a></li>
 
-				<li ng-class="{active:isActive('/donate')}"><a href="#/donate"><i class="icon-white icon-heart"></i> Donate</a></li>
-
-				<li ng-class="{active:isActive('/source')}"><a href="https://github.com/dwbfox/Nuke-Your-Tracks"><i class="icon-white icon-file"></i>Source code (Github)</a></li>
-			</ul>
+					<li ng-class="{active:isActive('/source')}"><a href="https://github.com/dwbfox/Nuke-Your-Tracks"><i class="icon-white icon-file"></i> Source code (Github)</a></li>
+				</ul>
+			</div>
 		</div>
 
-		<div ng-view="" class="span9 content">
+	<div class="container">
+		<div ng-view="" class="span6 offset3 content">
 
 
 			<!-- LOAD ANGULAR CONTENT -->
@@ -54,7 +59,9 @@
 <script src="js/jquery-1.9.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/tinygrowl.min.js"></script>
+<script src="js/options.js"></script>
 <script src="js/app.js"></script>
 <script src="js/services.js"></script>
 <script src="js/controllers.js"></script>
+<script src="js/jquery-tourbuso.js"></script>
 </body>		

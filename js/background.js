@@ -1,9 +1,27 @@
 chrome.browserAction.setTitle({'title': 'Activate Nuke Your Tracks!'});
 
+// First run event. Initalize a new database
+chrome.runtime.onInstalled.addListener(function(e) {
+	onInstalledCb(e);
+});
+
 // Browser button is clicked. Initiate cleaning
 chrome.browserAction.onClicked.addListener(function(e) {
 	cleanData();
 });
+
+function notify(m) {
+
+	var notification = chrome.notifications.create('nuke',{
+		iconUrl: 'img/icon48.png',
+		title: 'Nuke Your Tracks',
+		message: m,
+		type: 'basic',
+	}, function(e) {
+		console.log(e);
+	});
+
+}
 
 function cleanData() {
 
@@ -24,7 +42,7 @@ function cleanData() {
 			// Check to see if item is enabled to be cleaned
 			if (item.checked) {
 				console.log('The following data item will be cleaned:', item);
-				toBeCleaned[item.name] = item.checked;
+				toBeCleaned[item.slug] = item.checked;
 			}
 		}
 
@@ -34,16 +52,16 @@ function cleanData() {
 			return;
 		}
 
-		console.log('Final list of items to be cleaned:', toBeCleaned.legnth);
+		console.log('Final list of items to be cleaned:', toBeCleaned.length);
 
 		// 3 Iterate through each item in cleanSettings object and remove the relevant data
-		console.log('About to begin the cleaning process!');
+		console.log(toBeCleaned);
 		try {
-			chrome.browsingData.remove(toBeCleaned, function(e) {
-				console.log('Cleaning process finished', e);
+			chrome.browsingData.remove({},toBeCleaned, function(e) {
+				notify('Successfully cleaned browser data!', e);
 			});
 		} catch (e) {
-			console.error('An error occured while cleaning:',e);
+			console.error('An error occured while cleaning:',e,toBeCleaned);
 
 		}
 	});	
@@ -74,7 +92,7 @@ function onInstalledCb(e) {
 			{
 				"name": "Browser cache",
 				"checked": false,
-				"slug": "browsercache"
+				"slug": "cache"
 			},
 			{
 				"name": "Cookies",
