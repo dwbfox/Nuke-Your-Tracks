@@ -13,10 +13,11 @@ chrome.browserAction.onClicked.addListener(function(e) {
 function notify(m) {
 
 	var notification = chrome.notifications.create('nuke',{
-		iconUrl: 'img/icon48.png',
+		iconUrl: 'img/icon128.png',
 		title: 'Nuke Your Tracks',
 		message: m,
-		type: 'basic',
+		items: [{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'}],
+		type: 'list',
 	}, function(e) {
 		console.log(e);
 	});
@@ -68,13 +69,6 @@ function cleanData() {
 }
 
 function onInstalledCb(e) {
-
-	// Clear out old storage data
-	console.log('Removing old data...');
-	chrome.storage.sync.clear();
-
-	// Welcome the user
-	chrome.tabs.create({url: "options.html#/about"});
 
 	var nukeSettings = {
 
@@ -152,6 +146,13 @@ function onInstalledCb(e) {
 			
 		]
 	};
+
+	// Clear out old storage data
+	console.log('Removing old data...');
+	chrome.storage.sync.clear();
+
+	// Welcome the user
+	chrome.tabs.create({url: "options.html#/about"});
 
 	chrome.storage.sync.set(nukeSettings, function(e) {
 		console.log('Populated storage with initial data');
