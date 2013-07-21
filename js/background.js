@@ -1,3 +1,4 @@
+
 chrome.browserAction.setTitle({'title': 'Activate Nuke Your Tracks!'});
 
 // First run event. Initalize a new database
@@ -16,8 +17,7 @@ function notify(m) {
 		iconUrl: 'img/icon128.png',
 		title: 'Nuke Your Tracks',
 		message: m,
-		items: [{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'},{title:'Jaaba',message:'thehut'}],
-		type: 'list',
+		type: 'basic',
 	}, function(e) {
 		console.log(e);
 	});
@@ -25,15 +25,22 @@ function notify(m) {
 }
 
 function cleanData() {
+	chrome.browserAction.setBadgeText({text: '!'});
 
 	// 1. Load the app settings from chrome.storage
 	chrome.storage.sync.get('cleanSettings', function(data) {
 		var i = 0;
 		var item;
 		var toBeCleaned = {};
+		var appSettings;
 		var removalOptions;
 		var cleanSettings = data.cleanSettings;
 
+		chrome.storage.sync.get('appSettings', function(data) {
+			appSettings = data;
+		});
+
+		console.log('Browser Action: Retrieved appSettings', appSettings);
 		console.log('Browser Action: Retrieved cleanSettings', data.cleanSettings);
 
 		// Iterate through each item that needs to be cleaned
@@ -55,16 +62,16 @@ function cleanData() {
 
 		console.log('Final list of items to be cleaned:', toBeCleaned.length);
 
-		// 3 Iterate through each item in cleanSettings object and remove the relevant data
 		console.log(toBeCleaned);
 		try {
 			chrome.browsingData.remove({},toBeCleaned, function(e) {
 				notify('Successfully cleaned browser data!', e);
 			});
+
 		} catch (e) {
 			console.error('An error occured while cleaning:',e,toBeCleaned);
-
 		}
+		chrome.browserAction.setBadgeText({text: ''});
 	});	
 }
 
