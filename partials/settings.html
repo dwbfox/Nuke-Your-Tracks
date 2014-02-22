@@ -1,9 +1,12 @@
-<div class="span4">
-	<h3><i class="icon-eraser "></i> Cleaning settings</h3>
+<div class="">
+	<h4>Cleaning settings</h4>
 		<fieldset class="">
 			<div>
 			 	<ul class="settings">
-					<li ng-repeat="setting in settings.cleanSettings">
+					<li 
+					title="{{setting.description}}"
+					class="" 
+					ng-repeat="setting in settings.cleanSettings">
 						<label>
 						<input 
 							type="checkbox" 
@@ -17,6 +20,7 @@
 							<span>{{ setting.name }}</span>
 						</label>						
 					</li>
+					<li class="row"><label><input class="row" type="checkbox" data-toggle="button" ng-model="setting.selectAllSettings"><span>Select all</span></label></li>
 				</ul>
 			</div>
 

@@ -21,7 +21,7 @@ function notify(m) {
 	}, function(e) {
 		console.log(e);
 	});
-
+	return notification;
 }
 
 function cleanData() {
@@ -77,6 +77,8 @@ function cleanData() {
 
 function onInstalledCb(e) {
 
+	console.log(e);
+
 	var nukeSettings = {
 
 		"appSettings": {
@@ -88,7 +90,8 @@ function onInstalledCb(e) {
 			{
 				"name": "App cache",
 				"checked": false,
-				"slug": "appcache"
+				"slug": "appcache",
+				"description": "Clears websites' appcache data."
 			},
 			{
 				"name": "Browser cache",
@@ -159,7 +162,10 @@ function onInstalledCb(e) {
 	chrome.storage.sync.clear();
 
 	// Welcome the user
-	chrome.tabs.create({url: "options.html#/about"});
+	var nid = notify('Nuke Your Tracks has been updated! Click here for more information');
+	chrome.notifications.onClicked.addListener(function(e) {
+		chrome.tabs.create({url: "options.html#/changelog"});
+	});
 
 	chrome.storage.sync.set(nukeSettings, function(e) {
 		console.log('Populated storage with initial data');
