@@ -2,8 +2,8 @@ $(document).ready( function() {
 
     $(document).tooltip();
 
-    var settingsList = $('.settings li');
-    settingsList.on('click', function(e) {
+    var settingsList = $('.settings li input[type="checkbox"]');
+    settingsList.on('change', function(e) {
       alert('test');
       $(this).addClass('altered');
     });
