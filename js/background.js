@@ -44,7 +44,7 @@ function cleanData() {
 		console.log('Browser Action: Retrieved cleanSettings', data.cleanSettings);
 
 		// Iterate through each item that needs to be cleaned
-		for (i=0;i < cleanSettings.length;i++) {
+		for (i=0; i<cleanSettings.length; i++) {
 			item = cleanSettings[i];
 
 			// Check to see if item is enabled to be cleaned
@@ -91,57 +91,67 @@ function onInstalledCb(e) {
 				"name": "App cache",
 				"checked": false,
 				"slug": "appcache",
-				"description": "Clears websites' appcache data."
+				"description": "Clears websites' appcache data. May disrupt some web applications that run offline."
 			},
 			{
 				"name": "Browser cache",
 				"checked": false,
-				"slug": "cache"
+				"slug": "cache",
+				"description": "Clears cached images, stylesheets, and other resources stored on your hard drive"
 			},
 			{
 				"name": "Cookies",
 				"checked": false,
-				"slug": "cookies"
+				"slug": "cookies",
+				"description": "Clears all cookie data (may log you out of signed-in website sessions)"
 			},
 			{
 				"name": "Form data",
 				"checked": false,
-				"slug": "formData"
+				"slug": "formData",
+				"description": "Clears the browser's stored form data (autofill)."
 			},
 			{
 				"name": "Passwords",
 				"checked": false,
-				"slug": "passwords"
+				"slug": "passwords",
+				"description": "Clears the browser's stored passwords."
 			},
 			{
 				"name": "Downloads",
 				"checked": false,
-				"slug": "downloads"
+				"slug": "downloads",
+				"description": "Clears the browser's list of downloaded files (not the downloaded files themselves)"
 			},
 			{
 				"name": "File Systems",
 				"checked": false,
-				"slug": "fileSystems"
+				"slug": "fileSystems",
+				"description": "Clears websites' file system data."
 			},
 			{
 				"name": "History",
 				"checked": false,
-				"slug": "history"
+				"slug": "history",
+				"description": "Clears the browser's history."
 			},
 			{
 				"name": "IndexedDB",
 				"checked": false,
-				"slug": "indexedDB"
+				"slug": "indexedDB",
+				"description": "Clears websites' IndexedDB data."
 			},
 			{
 				"name": "localStorage",
 				"checked": false,
-				"slug": "localStorage"
+				"slug": "localStorage",
+				"description": "Clears websites' local storage data."
 			},
 			{
 				"name": "Plugin Data",
 				"checked": false,
-				"slug": "pluginData"
+				"slug": "pluginData",
+				"description": "Clears plugins' data."
 			},
 			{
 				"name": "Server-bound certificates",
@@ -151,7 +161,8 @@ function onInstalledCb(e) {
 			{
 				"name": "WebSQL",
 				"checked": false,
-				"slug": "webSQL"
+				"slug": "webSQL",
+				"description": "Clears websites' WebSQL data."
 			}
 			
 		]

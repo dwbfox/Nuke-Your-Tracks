@@ -28,6 +28,7 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
 			setTimeout(function() {
 				console.log('Setting saved', setting);
 				settingChecked = (setting.checked) ? 'ON' : 'OFF';
+				$growlService.clear();
 				$growlService.growl('Clean <strong>' + setting.name + '</strong> set to: ' + settingChecked);
 
 			}, 300);

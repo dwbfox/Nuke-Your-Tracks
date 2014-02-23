@@ -53,6 +53,10 @@ h3 {
 	margin: 6px;
 }
 
+.settings li.altered {
+	box-shadow: inset 0px 0px 18px #FF2727;
+	background: rgb(255, 103, 103);
+}
 
 
 .settings li button {
