@@ -47,8 +47,8 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
 		chrome.storage.sync.get('appSettings', function(data) {
 			
 			// No data, meaning we haven't initialized it
-			if (chrome.runtime.lastError || typeof $scope.settings.appSettings === 'undefined') {
-				console.error('loadSettings(): Warning no data found:', $scope.settings, chrome.runtime.lastError);
+			if (typeof chrome.runtime.lastError  !== 'undefined') {
+				console.error('loadSettings(): Warning no data found:', $scope.settings.appSettings, chrome.runtime.lastError);
 			}
 
 			$scope.$apply(function() {

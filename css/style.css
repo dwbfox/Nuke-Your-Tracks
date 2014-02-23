@@ -41,7 +41,9 @@ h3 {
 .footer ul {
 	margin-top:10px;
 }
-
+.settings {
+	margin: 0px;
+}
 .settings li   {
 	list-style:none;
 	display: inline-table;
@@ -59,7 +61,7 @@ h3 {
 }
 
 
-.settings li button {
+button {
 	font-size: 12px;
 	margin-bottom: 10px;
 	width: 214px;
@@ -68,23 +70,23 @@ h3 {
 	border-radius: 0px;
 }
 
-.settings li button span {
+ button span {
 	text-shadow: 1px 1px 7px #C4C4C4;
 	font-size: 12px;
 	font-weight: bolder;
 }
 
-.settings li button.active {
+ button.active {
 	background: #FF0000;
 	color: #FFF;
 }
 
-.settings li button:hover {
+ button:hover {
     background: #1D89B1;
     color: #FFF;
 }
 
-.settings li button:active {
+ button:active {
     background: red;
     color: #FFF;
 }

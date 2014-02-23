@@ -1,11 +1,13 @@
 $(document).ready( function() {
 
-    $(document).tooltip();
 
-    var settingsList = $('.settings li input[type="checkbox"]');
-    settingsList.on('change', function(e) {
-      alert('test');
-      $(this).addClass('altered');
-    });
+
+  $(document).tooltip();
+  $('.datepicker').datepicker();
+
+  var settingsList = $('.settings li input[type="checkbox"]');
+  settingsList.on('click', function(e) {
+    $(this).addClass('altered');
+  });
 
 });

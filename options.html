@@ -2,14 +2,15 @@
 <html ng-csp ng-app="nukeyourtracks">
 <head>
 	<title>Nuke Your Tracks</title>
-	<script src="js/angular.min.js"></script>
+	<script src="js/vendor/angular.min.js"></script>
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/jquery.growl.css">
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="css/jquery-ui-1.10.4.custom.min.css">
+	<link rel="stylesheet" href="css/joyride-2.1.css">
 	<link rel="stylesheet" href="css/style.css">
-	<script src="js/less.js"></script>
+	<script src="js/vendor/less.js"></script>
 </head>
 <body ng-controller="MainCtrl">
 
@@ -21,9 +22,12 @@
 			<div class="navbar-inner">
 				<ul class="nav">
 				
-					<li ng-class="{active:isActive('/settings')}">
+					<li id="firstStop" ng-class="{active:isActive('/settings')}">
 						<a href="#/settings">
 						 General Settings</a>
+							<h3 id="begin-tour"></h3>
+							<p class="your-paragraph-class"></p>
+							<a id="begin-tour" href="#url"></a>
 					</li>
 					<li class="divider"></li>
 
@@ -59,13 +63,50 @@
 	</div> <!-- /main container-->
 		<!--<div class="ad-space" style="width: 100%; height:90px; background:gray;"></div>-->
 
-<script src="js/jquery-1.9.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="js/vendor/jquery-1.9.1.min.js"></script>
+<script src="js/vendor/jquery.joyride-2.1.js"></script>
+<script src="js/vendor/jquery.cookie.js"></script>
+<script src="js/vendor/"></script>
 <script src="js/options.js"></script>
-<script src="js/jquery.growl.js"></script>
-<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/options.js"></script>
+<script src="js/vendor/jquery.growl.js"></script>
+<script src="js/vendor/jquery-ui-1.10.4.custom.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/services.js"></script>
-<script src="js/options.js"></script>
 <script src="js/controllers.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="joyride-list" data-joyride>
+  <li data-id="firstStop" data-text="Next" data-options="tip_location: top">
+    <p>Hello and welcome to the Joyride documentation page.</p>
+  </li>
+  <li data-id="numero1" data-class="custom so-awesome" data-text="Next">
+    <h4>Stop #1</h4>
+    <p>You can control all the details for you tour stop. Any valid HTML will work inside of Joyride.</p>
+  </li>
+  <li data-id="numero2" data-button="Next" data-options="tip_location:top;tip_animation:fade">
+    <h4>Stop #2</h4>
+    <p>Get the details right by styling Joyride with a custom stylesheet!</p>
+  </li>
+  <li data-button="End">
+    <h4>Stop #3</h4>
+    <p>It works as a modal too!</p>
+  </li>
+</ol>
+
+
 </body>		

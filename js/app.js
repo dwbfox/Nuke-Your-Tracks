@@ -1,5 +1,6 @@
 var nuke = angular.module('nukeyourtracks', []);
 
+    $("#begin-tour").joyride({});
 
 // Routers
 nuke.config(function($routeProvider) {
