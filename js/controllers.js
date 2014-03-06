@@ -29,12 +29,13 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
     $scope.selectAllSettings = function($event) {
         console.log($event);
         if ((typeof $event.target.checked !== 'undefined')) {
-
             for (i=0; i<$scope.settings.cleanSettings.length; i++) {
                 $scope.settings.cleanSettings[i].checked = $event.target.checked;
             }
         }
     }
+
+
     /**
     * Triggered each time a cleanable item is selected
     */
@@ -57,10 +58,13 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
 
     }
 
-
     $scope.settings = {};
     console.warn('BrowserDataCtrl invoked');
 
+    /**
+    * Loads all the settings whenever the options page is opened. 
+    * The data is stored under chrome's non standared synced storage
+    */
     $scope.loadSettings = function() {
         console.warn('loadSettings(): $scope: ',$scope);
 
