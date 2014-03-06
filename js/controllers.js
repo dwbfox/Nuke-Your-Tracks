@@ -46,7 +46,7 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
         $growlService.config.delay = 300;
 
         // Saved the modified settingsfor tfor
-        chrome.storage.sync.set($scope.settings, function(e) {
+        $scope.saveSettings(function() {
             setTimeout(function() {
                 console.log('Setting saved', setting);
                 settingChecked = (setting.checked) ? 'ON' : 'OFF';
@@ -58,8 +58,17 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
 
     }
 
+
+
     $scope.settings = {};
     console.warn('BrowserDataCtrl invoked');
+
+    /**
+    * Saves all the settings back into storage
+    */
+    $scope.saveSettings = function(callback) {
+        chrome.storage.sync.set($scope.settings, callback);
+    }
 
     /**
     * Loads all the settings whenever the options page is opened. 
