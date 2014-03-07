@@ -32,6 +32,9 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
             for (i=0; i<$scope.settings.cleanSettings.length; i++) {
                 $scope.settings.cleanSettings[i].checked = $event.target.checked;
             }
+            $scope.saveSettings(function() {
+                console.log('selectAllSettings(): Settings saved');
+            });
         }
     }
 
@@ -41,14 +44,11 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
     */
     $scope.updateSetting = function(setting) {
         var settingVal = $scope.settings.appSettings || $scope.settings.cleanSettings.checked;
-        console.log('AppSettings',$scope.settings.appSettings);
-        console.log('updateSetting(): Saving setting...', settingVal);
         $growlService.config.delay = 300;
 
         // Saved the modified settingsfor tfor
         $scope.saveSettings(function() {
             setTimeout(function() {
-                console.log('Setting saved', setting);
                 settingChecked = (setting.checked) ? 'ON' : 'OFF';
                 $growlService.clear();
                 $growlService.growl('Clean <strong>' + setting.name + '</strong> set to: ' + settingChecked);
@@ -64,9 +64,12 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
     console.warn('BrowserDataCtrl invoked');
 
     /**
-    * Saves all the settings back into storage
-    */
+     * Saves the current settings object into storage
+     * @param  {Function} callback
+     * @return {void}
+     */
     $scope.saveSettings = function(callback) {
+        console.log('saveSettings(): Saving settings', $scope.settings);
         chrome.storage.sync.set($scope.settings, callback);
     }
 
