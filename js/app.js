@@ -1,6 +1,5 @@
 var nuke = angular.module('nukeyourtracks', []);
 
-    $("#begin-tour").joyride({});
 
 // Routers
 nuke.config(function($routeProvider) {
@@ -13,13 +12,12 @@ nuke.config(function($routeProvider) {
 	.when('/changelog',
 		{
 			templateUrl: '../partials/changelog.html',
-			title: 'Changelog'
+			controller: 'ChangelogCtrl'
 		}
 	)
 	.when('/about',
 		{
-			templateUrl: '../partials/about.html',
-			controller: 'AboutCtrl'
+			templateUrl: '../partials/about.html'	
 		}
 
 	)
@@ -33,7 +31,3 @@ nuke.config(function($routeProvider) {
 		}
 	)
 });
-
-
-
-console.log('App loaded');

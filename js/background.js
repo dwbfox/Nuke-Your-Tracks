@@ -34,7 +34,12 @@ function cleanData() {
 		var toBeCleaned = {};
 		var removalOptions;
 		var cleanSettings = data.cleanSettings;
-		var appSettings = data.appSettings;
+		var appSettings;
+
+		chrome.storage.sync.get('appSettings', function(data) {
+			appSettings = data;
+			console.log('appSettings', data);
+		});
 
 
 		console.log('Browser Action: Retrieved appSettings', appSettings);

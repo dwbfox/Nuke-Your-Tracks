@@ -1,6 +1,6 @@
-// Main app controller
 /**
 * The controller for the options page
+* 
 */
 nuke.controller('MainCtrl',['$scope', '$growlService', '$location', function($scope,$growlService,$location) {
 
@@ -9,11 +9,21 @@ nuke.controller('MainCtrl',['$scope', '$growlService', '$location', function($sc
     });
 
     $scope.version = chrome.runtime.getManifest().version;
-
+    var d = new Date();
+    $scope.year = d.getFullYear();
     $scope.isActive = function(page) {
         var isPage = (page === $location.$$path)
         return isPage;
     }
+}]);
+
+/**
+ * The controller for the about page
+ * 
+ */
+nuke.controller('ChangelogCtrl', ['$scope', function($scope) {
+    $('.accordion').accordion();
+    console.log('About controller');
 }]);
 
 
@@ -23,45 +33,25 @@ nuke.controller('MainCtrl',['$scope', '$growlService', '$location', function($sc
 */
 nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, $growlService) {
 
+    $scope.settings = {};
+
     /**
     * Triggered when the select all checkbox is clicked
     */
     $scope.selectAllSettings = function($event) {
         console.log($event);
         if ((typeof $event.target.checked !== 'undefined')) {
+
             for (i=0; i<$scope.settings.cleanSettings.length; i++) {
                 $scope.settings.cleanSettings[i].checked = $event.target.checked;
             }
+
             $scope.saveSettings(function() {
                 console.log('selectAllSettings(): Settings saved');
             });
         }
     }
 
-
-    /**
-    * Triggered each time a cleanable item is selected
-    */
-    $scope.updateSetting = function(setting) {
-        var settingVal = $scope.settings.appSettings || $scope.settings.cleanSettings.checked;
-        $growlService.config.delay = 300;
-
-        // Saved the modified settingsfor tfor
-        $scope.saveSettings(function() {
-            setTimeout(function() {
-                settingChecked = (setting.checked) ? 'ON' : 'OFF';
-                $growlService.clear();
-                $growlService.growl('Clean <strong>' + setting.name + '</strong> set to: ' + settingChecked);
-
-            }, 300);
-        });
-
-    }
-
-
-
-    $scope.settings = {};
-    console.warn('BrowserDataCtrl invoked');
 
     /**
      * Saves the current settings object into storage
@@ -71,6 +61,7 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
     $scope.saveSettings = function(callback) {
         console.log('saveSettings(): Saving settings', $scope.settings);
         chrome.storage.sync.set($scope.settings, callback);
+
     }
 
     /**
@@ -102,24 +93,29 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
             $scope.$apply(function() {
                 console.log('Loaded storage data (cleanSettings):', data);
                 $scope.settings.cleanSettings = data.cleanSettings; 
-                        console.log($scope.settings)
             });
         });
+    }
 
+    /**
+    * Triggered each time a cleanable item is selected
+    */
+    $scope.updateSetting = function(setting) {
+        var settingVal = $scope.settings.appSettings || $scope.settings.cleanSettings.checked;
+        $growlService.config.delay = 300;
+
+        // Saved the modified settingsfor tfor
+        $scope.saveSettings(function() {
+            setTimeout(function() {
+                settingChecked = (setting.checked) ? 'ON' : 'OFF';
+                $growlService.clear();
+                $growlService.growl('Clean <strong>' + setting.name + '</strong> set to: ' + settingChecked);
+
+            }, 300);
+        });
 
     }
 
-    $scope.loadSettings();
 
 
 }]);
-
-
-// About page
-nuke.controller('AboutCtrl',['$scope','$growlService', '$window', function($scope, $growlService, $window) {
-    console.log('AboutCtrl loaded...')
-    $scope.title = 'About';
-}]);
-
-
-console.log('controllers loaded');

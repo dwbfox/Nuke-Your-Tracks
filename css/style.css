@@ -46,12 +46,7 @@ h3 {
 }
 .settings li   {
 	list-style:none;
-	display: inline-table;
-	width: 179px;
-	padding: 41px;
-	color: white;
-	box-shadow: inset 0px 0px 18px #03CFCF;
-	background: rgb(103, 206, 255);
+	display: block;
 	margin: 6px;
 }
 
