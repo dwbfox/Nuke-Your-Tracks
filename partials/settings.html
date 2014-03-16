@@ -5,7 +5,7 @@
             <div style="display:none;" class="">
               <input ng-click="selectAllSettings($event)" type="checkbox" id="selectAll"><label for="selectAll">Select all</label>
             </div>
-            <ul class="settings">
+            <ul id="settings" class="settings">
                 <li 
                 data-clean-setting=""
                 title="{{setting.description}}"
@@ -26,7 +26,9 @@
             </ul>
 
         </div>
-
+        <ol style="display:none;" id="apptour">
+            <li data-id="settings">These buttons corresponding to all the cleanable browser data in Chrome. Select the items to be cleaned whenever Nuke Your Tracks is triggered. A red label indicates the item is enabled to be cleaned.</li>
+        </ol>
     </fieldset>
     <div style="display: none;">
         <h3><i class="icon-gear"></i> Other Settings</h3>
