@@ -57,6 +57,10 @@ h3 {
 }
 
 
+.settings .ui-button-text {
+    width: 238px;
+}
+
 button {
 	font-size: 12px;
 	margin-bottom: 10px;
