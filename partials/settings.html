@@ -1,40 +1,39 @@
 <div class="">
-    <h3> Cleaning Settings<i class="icon-gear"></i></h3>
-        <fieldset class="">
-            <div class="settings-wrapper">
-                <div class="">
-                   <input ng-click="selectAllSettings($event)" type="checkbox" id="selectAll"><label for="selectAll">Select all</label>
-                </div>
-                <ul class="settings">
-                    <li 
-                    title="{{setting.description}}"
-                    class="" 
-                    ng-repeat="setting in settings.cleanSettings">
-                        <label>
-                        <input 
-                            type="checkbox" 
-                            data-toggle="button"
-                            ng-checked="setting.checked"
-                            ng-model="setting.checked" 
-                            ng-click="updateSetting(setting)"
-                            value="{{ setting.slug }}" 
-                            class=""
-                        >
-                            <span>{{ setting.name }}</span>
-                        </label>                        
-                    </li>
-
-                </ul>
-
+<h3> Cleaning Settings</h3>
+    <fieldset class="">
+        <div class="settings-wrapper">
+            <div style="display:none;" class="">
+              <input ng-click="selectAllSettings($event)" type="checkbox" id="selectAll"><label for="selectAll">Select all</label>
             </div>
+            <ul class="settings">
+                <li 
+                data-clean-setting=""
+                title="{{setting.description}}"
+                class="" 
+                ng-repeat="setting in settings.cleanSettings">
+                    <input 
+                        type="checkbox"
+                        ng-checked="setting.checked"
+                        ng-model="setting.checked" 
+                        ng-click="updateSetting(setting)"
+                        value="{{ setting.slug }}" 
+                        class=""
+                        id="{{ setting.slug }}"
+                    >
+                        <label for="{{ setting.slug }}" }}>{{ setting.name }}</label>
+                </li>
 
-        </fieldset>
+            </ul>
 
-    <h3><i class="icon-gear"></i> Other Settings</h3>
-    <div class="control-group">
-        <label class="control-label" ><input ng-click="updateSetting(settings.appSettings.silent)" type="checkbox" value="true" ng-model="settings.appSettings.silent"> Show me notifications when cleaning begins</label>
-        <label>Automatically trigger cleaning every <input type="text" class="datepicker" name="cleanInterval"> seconds</label>
-    </div>  
+        </div>
 
+    </fieldset>
+    <div style="display: none;">
+        <h3><i class="icon-gear"></i> Other Settings</h3>
+        <div class="control-group">
+            <label class="control-label" ><input ng-click="updateSetting(settings.appSettings.silent)" type="checkbox" value="true" ng-model="settings.appSettings.silent"> Show me notifications when cleaning begins</label>
+            <label>Automatically trigger cleaning every <input type="text"  name="cleanInterval"> seconds</label>
+        </div>  
+    </div>
 </div>      
 

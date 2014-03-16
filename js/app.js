@@ -1,4 +1,4 @@
-var nuke = angular.module('nukeyourtracks', []);
+var nuke = angular.module('nukeyourtracks', ['nuke.settings.settingUIButtons']);
 
 
 // Routers
@@ -12,7 +12,7 @@ nuke.config(function($routeProvider) {
 	.when('/changelog',
 		{
 			templateUrl: '../partials/changelog.html',
-			title: 'Changelog'
+			controller: 'ChangelogCtrl'
 		}
 	)
 	.when('/about',

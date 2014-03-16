@@ -1,4 +1,14 @@
+nuke.factory('$chromeStorageService', function() {
 
+	var storage = {};
+
+	storage.set = function(data, callback) {
+  	  chrome.storage.sync.set($scope.settings, callback);
+	}
+
+	storage.get = function(callback) {}
+
+});
 nuke.factory('$growlService', function() {
 	var growl = {};
 
@@ -22,5 +32,3 @@ nuke.factory('$growlService', function() {
 
 	return growl;
 });
-
-console.log('services loaded', nuke);

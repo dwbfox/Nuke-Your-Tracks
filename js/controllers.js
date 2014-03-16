@@ -5,7 +5,7 @@
 nuke.controller('MainCtrl',['$scope', '$growlService', '$location', function($scope,$growlService,$location) {
 
     chrome.runtime.onInstalled.addListener(function(e) {
-        console.log('On installed!')    
+        //console.log('On installed!')    
     });
 
     $scope.version = chrome.runtime.getManifest().version;
@@ -23,8 +23,9 @@ nuke.controller('MainCtrl',['$scope', '$growlService', '$location', function($sc
  * 
  */
 nuke.controller('ChangelogCtrl', ['$scope', function($scope) {
-    $('.accordion').accordion();
-    console.log('About controller');
+    $scope.$on('$viewContentLoaded', function() {
+        $('.accordion').accordion().first().show();
+    });
 }]);
 
 
@@ -35,15 +36,16 @@ nuke.controller('ChangelogCtrl', ['$scope', function($scope) {
 nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, $growlService) {
 
     $scope.settings = {};
+    $scope.allSelected = false;
 
     /**
     * Triggered when the select all checkbox is clicked
     */
     $scope.selectAllSettings = function($event) {
-        console.log($event);
         if ((typeof $event.target.checked !== 'undefined')) {
             for (i=0; i<$scope.settings.cleanSettings.length; i++) {
                 $scope.settings.cleanSettings[i].checked = $event.target.checked;
+                $($event.target).trigger('checked');
             }
             $scope.saveSettings(function() {
                 console.log('selectAllSettings(): Settings saved');
@@ -76,7 +78,7 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
      * @return {void}
      */
     $scope.saveSettings = function(callback) {
-        console.log('saveSettings(): Saving settings', $scope.settings);
+        //console.log('saveSettings(): Saving settings', $scope.settings);
         chrome.storage.sync.set($scope.settings, callback);
     }
 
@@ -85,19 +87,19 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
     * The data is stored under chrome's non standared synced storage
     */
     $scope.loadSettings = function() {
-        console.warn('loadSettings(): $scope: ',$scope);
+        //console.warn('loadSettings(): $scope: ',$scope);
 
         // Load the previous application settings
         chrome.storage.sync.get('appSettings', function(data) {
             
             // No data, meaning we haven't initialized it
             if (typeof chrome.runtime.lastError  !== 'undefined') {
-                console.error('loadSettings(): Warning no data found:', $scope.settings.appSettings, chrome.runtime.lastError);
+                //console.error('loadSettings(): Warning no data found:', $scope.settings.appSettings, chrome.runtime.lastError);
             }
 
             $scope.$apply(function() {
                 // Now load them
-                console.log('Loaded storage data (appSettings):', data);
+                //console.log('Loaded storage data (appSettings):', data);
                 $scope.settings.appSettings = data.appSettings; 
 
             });
@@ -107,13 +109,21 @@ nuke.controller('BrowserDataCtrl', ['$scope', '$growlService', function($scope, 
         // Load the cleaning settings
         chrome.storage.sync.get('cleanSettings', function(data) {
             $scope.$apply(function() {
-                console.log('Loaded storage data (cleanSettings):', data);
+                //console.log('Loaded storage data (cleanSettings):', data);
                 $scope.settings.cleanSettings = data.cleanSettings; 
-                        console.log($scope.settings)
+                        //console.log($scope.settings)
             });
         });
     }
 
     $scope.loadSettings();
-
+    $scope.$on('$viewContentLoaded', function() {
+        $('.settings input[type="checkbox"]').button();
+    });
 }]);
+
+
+/**
+ * About Us page controller
+ */
+nuke.controller('AboutCtrl', ['$scope', '$growlService', function($scope, $growlService) {}]);
