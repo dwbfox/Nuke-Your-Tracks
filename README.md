@@ -31,7 +31,8 @@ along with this program.  If not, see (http://www.gnu.org/licenses/)
 * 1.4.5 
 	- Disabled opening extension tab on new update/install. Clicking on notification now opens the tab</li>
     - CSS layout changes
-    - Added option to select all items to be cleaned
+    - Updated $growlService plugin
+    - Added jQuery UI into project
 
 * 1.4 
 
