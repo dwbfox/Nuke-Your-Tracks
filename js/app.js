@@ -12,12 +12,13 @@ nuke.config(function($routeProvider) {
 	.when('/changelog',
 		{
 			templateUrl: '../partials/changelog.html',
-			controller: 'ChangelogCtrl'
+			title: 'Changelog'
 		}
 	)
 	.when('/about',
 		{
-			templateUrl: '../partials/about.html'	
+			templateUrl: '../partials/about.html',
+			controller: 'AboutCtrl'
 		}
 
 	)
